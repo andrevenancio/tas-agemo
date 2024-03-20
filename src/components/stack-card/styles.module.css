@@ -1,0 +1,137 @@
+.card {
+  position: relative;
+  aspect-ratio: 2/1;
+  width: 300px;
+
+  --card-custom-color: var(--card-background);
+}
+
+.content {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  border-radius: var(--border-radius-m);
+  background-color: var(--background-color);
+  border: 1px dashed var(--card-border);
+
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  padding: var(--card-padding);
+  gap: 4px;
+
+  color: var(--foreground-color);
+}
+
+.title,
+.body {
+  color: inherit;
+  text-align: center;
+  z-index: 1;
+}
+
+.title {
+  font-size: 14px;
+  opacity: 0.8;
+}
+
+.body {
+  font-size: 12px;
+  opacity: 0.4;
+}
+
+.step {
+  position: absolute;
+  top: calc(var(--card-padding) / 2);
+  left: calc(var(--card-padding) / 2);
+  font-size: 10px;
+  font-family: monospace;
+  opacity: 0.3;
+}
+
+.stacks {
+  position: absolute;
+  width: 100%;
+  height: 100%;
+  z-index: 0;
+}
+
+.icon {
+  position: absolute;
+  bottom: calc(var(--card-padding) / 2);
+  right: calc(var(--card-padding) / 2);
+}
+
+.icon i {
+  font-size: 16px;
+  color: inherit;
+  opacity: 0.5;
+}
+
+.stack {
+  background-color: var(--background-color);
+  border: 1px dashed var(--card-border);
+  border-radius: var(--border-radius-m);
+  /* background-color: var(--card-custom-color); */
+
+  --offset: 12px;
+  --scale: 0.11;
+
+  position: absolute;
+  bottom: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  z-index: calc(100 - var(--index));
+  transform: translateY(calc(0px + var(--offset) * var(--index)))
+    scale(calc(1 - var(--scale) * var(--index)));
+}
+
+.stack::before {
+  content: "";
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 101%;
+  height: 101%;
+}
+
+.stack:nth-child(1) {
+  --index: 1;
+}
+.stack:nth-child(1)::before {
+  background-color: rgba(32, 32, 32, 0.3);
+}
+
+.stack:nth-child(2) {
+  --index: 2;
+}
+.stack:nth-child(2)::before {
+  background-color: rgba(32, 32, 32, 0.6);
+}
+
+.stack:nth-child(3) {
+  --index: 3;
+}
+.stack:nth-child(3)::before {
+  background-color: rgba(32, 32, 32, 0.8);
+}
+
+.selected .content {
+  border: 1px dashed transparent;
+  background-color: var(--card-custom-color);
+}
+
+.selected .content {
+  border: 1px dashed transparent;
+  background-color: var(--card-custom-color);
+  color: black;
+}
+
+.selected .stack {
+  border: 1px dashed transparent;
+  background-color: var(--card-custom-color);
+}
